@@ -12,6 +12,12 @@
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="../assets/css/custom.css">
   <link rel='shortcut icon' type='image/x-icon' href='../assets/img/favicon.ico' />
+
+  <!-- General JS Scripts -->
+  <script src="../assets/js/app.min.js"></script>
+  <script>
+    var api_root="https://localhost:44362"
+  </script>
 </head>
 
 <body>

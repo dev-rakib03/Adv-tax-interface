@@ -27,10 +27,17 @@
                 <h4>Login</h4>
               </div>
               <div class="card-body">
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                <?php if(isset($_GET['from'])?$_GET['from']=="signup":false){ ?>
+                <div class="alert alert-success">
+                  <div class="alert-title">Registration Successfully</div>
+                  Please login to your account.
+                </div>
+                <?php } ?>
+
+                <form method="POST" id="login" class="needs-validation" novalidate="">
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control" name="Email" tabindex="1" required autofocus>
                     <div class="invalid-feedback">
                       Please fill in your email
                     </div>
@@ -44,7 +51,7 @@
                         </a>
                       </div> -->
                     </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <input id="password" type="password" class="form-control" name="Password" tabindex="2" required>
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
@@ -83,7 +90,27 @@
   <script src="../assets/js/custom.js"></script>
 
   <!-- on form submit js code here -->
-    <!-- hidden input will be RoleId,TinNumber,CreatedAt,UpdatedAt -->
+  <!-- hidden input will be RoleId,TinNumber,CreatedAt,UpdatedAt -->
+  <script>
+    // this is the id of the form
+    $("#login").submit(function(e) {
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+      var form = $(this);
+      var form_data = form.serialize();
+      var actionUrl = "https://localhost:44362/api/login";
+      //console.log(form_data);
+      $.ajax({
+          type: "POST",
+          url: actionUrl,
+          data: form_data, // serializes the form's elements.
+          success: function(data)
+          {
+            //console.log(data); // show response from the php script.
+            window.location.href = 'dashboard.php';
+          }
+      });
+    });
+  </script>
 
 
 
