@@ -5,7 +5,7 @@ include('layout_header.php');
 <link rel="stylesheet" href="../assets/bundles/datatables/datatables.min.css">
   <link rel="stylesheet" href="../assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 
-        <section class="section">
+        <section class="section" id="income">
           <div class="section-body">
           <?php if(isset($_GET['from'])){ ?>
             <div class="alert alert-success">
@@ -69,10 +69,16 @@ include('layout_header.php');
                 //console.log(res);
             }
         });
+        if(permission!=null){
+          !permission.includes('12')? $('#income').hide():'';
+          !permission.includes('14')? $('#view-income').hide():'';
+          !permission.includes('15')? $('#edit-income').hide():'';
+          !permission.includes('16')? $('#delete-income').hide():'';
+        }
     });
     
   
-    function create_table_row(item,index){
+    function create_table_row(item,index){     
       
         var row=
                 '<tr>'
@@ -83,12 +89,20 @@ include('layout_header.php');
                     +'<td>'+item.IncomeInfo+'</td>'                    
                     +'<td>'+item.Amount+'</td>'                    
                     +'<td class="text-center">'
-                      +'<a href="income-view.php?id='+item.Id+'" class="btn btn-success" style="margin:2px;">View</a><br>'
-                      +'<a href="income-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
-                      +'<a href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
+                      +'<a id="view-income" href="income-view.php?id='+item.Id+'" class="btn btn-success" style="margin:2px;">View</a><br>'
+                      +'<a id="edit-income" href="income-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
+                      +'<a id="delete-income" href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
                     +'</td>'
-                +'</tr>';        
-        $('#table > tbody:last-child').append(row);
+                +'</tr>';
+        if(permission.includes('30')){
+          $('#table > tbody:last-child').append(row);
+        }
+        else if(item.UserId==loged_user){
+          $('#table > tbody:last-child').append(row);
+        }
+        else{
+
+        }        
         //console.log(item);
     }
 

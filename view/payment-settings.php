@@ -2,7 +2,7 @@
 $title = "Payment-Settings";
 include('layout_header.php');
 ?>
-<section class="section">
+<section class="section" id="add-payment-setting">
       <div class="container">
       <?php if(isset($_GET['from'])){ ?>
             <div class="alert alert-success">
@@ -46,7 +46,7 @@ include('layout_header.php');
       </div>
 </section>
 
-<section class="section">
+<section class="section" id="payment-setting">
           <div class="section-body">          
             <div class="row">
               <div class="col-12">
@@ -122,6 +122,13 @@ include('layout_header.php');
                 //console.log(res);
             }
         });
+
+        if(permission!=null){
+          !permission.includes('21')? $('#payment-setting').hide():'';
+          !permission.includes('22')? $('#add-payment-setting').hide():'';
+          !permission.includes('23')? $('#edit-payment-setting').hide():'';
+          !permission.includes('24')? $('#delete-payment-setting').hide():'';
+        }
     });
     
   
@@ -133,8 +140,8 @@ include('layout_header.php');
                     +'<td>'+item.MethodName+'</td>'
                     +'<td>'+item.AccountNumber+'</td>'                                      
                     +'<td class="text-center">'
-                      +'<a href="payment-settings-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
-                      +'<a href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
+                      +'<a id="edit-payment-setting" href="payment-settings-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
+                      +'<a id="delete-payment-setting" href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
                     +'</td>'
                 +'</tr>';        
         $('#table > tbody:last-child').append(row);

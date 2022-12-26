@@ -5,7 +5,7 @@ include('layout_header.php');
   <link rel="stylesheet" href="../assets/bundles/datatables/datatables.min.css">
   <link rel="stylesheet" href="../assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 
-        <section class="section">
+        <section class="section" id="role">
           <div class="section-body">
           <?php if(isset($_GET['from'])){ ?>
             <div class="alert alert-success">
@@ -66,6 +66,12 @@ include('layout_header.php');
                 //alert(res);
             }
         });
+
+        if(permission!=null){
+          !permission.includes('4')? $('#role').hide():'';
+          !permission.includes('5')? $('#edit-role').hide():'';
+        }
+
     });
 var rolename=['Dashboard User','Dashboard Admin','TIN Certificate','Role','Role Edit','Role Add','User','User Add','User Edit','User View','User Delete','Income','Income Add','Income Edit','Income View','Income Delete','Payment','Payment Add','Payment View','Site Settings','Payment Setting','Payment Setting Add','Payment Setting Edit','Payment Setting Delete','Ticket','Ticket Add','Ticket Edit','Ticket View','Ticket Delete','Income Admin','Payment Admin','Ticket Admin'];
     function create_table_row(item,index){
@@ -86,7 +92,7 @@ var rolename=['Dashboard User','Dashboard Admin','TIN Certificate','Role','Role 
                     +'<td>'
                     +per_html                      
                     +'</td>'
-                    +'<td><a href="role-edit.php?id='+item.Id+'" class="btn btn-primary">Edit</a></td>'
+                    +'<td><a id="edit-role" href="role-edit.php?id='+item.Id+'" class="btn btn-primary">Edit</a></td>'
                 +'</tr>';
         
         $('#table > tbody:last-child').append(row);

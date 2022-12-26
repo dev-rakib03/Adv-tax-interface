@@ -18,8 +18,11 @@
 <body>
   <div class="loader"></div>
   <div id="app">
-    <section class="section">
+    <section class="section">      
       <div class="container mt-5">
+      <center>
+        <a href="index.php"><h5><i class="fa fa-home"></i> Home</h5></a>
+      </center>
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="card card-primary">
@@ -92,6 +95,25 @@
   <!-- on form submit js code here -->
   <!-- hidden input will be RoleId,TinNumber,CreatedAt,UpdatedAt -->
   <script>
+    $( document ).ready(function() {
+        if(sessionStorage.getItem("user_id")){
+          window.location.href="dashboard.php";
+        }
+    });
+
+    function getJson(url) {
+        return JSON.parse($.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            global: false,
+            async: false,
+            success: function (data) {
+                return data;
+            }
+        }).responseText);
+    }
+
     // this is the id of the form
     $("#login").submit(function(e) {
       e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -105,6 +127,15 @@
           data: form_data, // serializes the form's elements.
           success: function(data)
           {
+            var users = getJson("https://localhost:44362/api/users");
+            for(var i=0;i<users.length;i++){
+              if(users[i].Email==data.Email){
+                sessionStorage.setItem("user_id", users[i].Id);
+                var roles = getJson("https://localhost:44362/api/roles/"+users[i].RoleId);
+                sessionStorage.setItem("permission", roles.Permission);
+                break;
+              }
+            }
             //console.log(data); // show response from the php script.
             window.location.href = 'dashboard.php';
           }

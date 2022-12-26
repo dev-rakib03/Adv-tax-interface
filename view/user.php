@@ -5,7 +5,7 @@ include('layout_header.php');
   <link rel="stylesheet" href="../assets/bundles/datatables/datatables.min.css">
   <link rel="stylesheet" href="../assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 
-        <section class="section">
+        <section class="section" id="user">
           <div class="section-body">
           <?php if(isset($_GET['from'])){ ?>
             <div class="alert alert-success">
@@ -74,6 +74,12 @@ include('layout_header.php');
                 //console.log(res);
             }
         });
+        if(permission!=null){
+          !permission.includes('7')? $('#user').hide():'';
+          !permission.includes('9')? $('#view-user').hide():'';
+          !permission.includes('10')? $('#edit-user').hide():'';
+          !permission.includes('11')? $('#delete-user').hide():'';
+        }
     });
     
 
@@ -116,9 +122,9 @@ include('layout_header.php');
                       +roleName                  
                     +'</td>'
                     +'<td class="text-center">'
-                      +'<a href="user-view.php?id='+item.Id+'" class="btn btn-success" style="margin:2px;">View</a><br>'
-                      +'<a href="user-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
-                      +'<a href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
+                      +'<a id="view-user" href="user-view.php?id='+item.Id+'" class="btn btn-success" style="margin:2px;">View</a><br>'
+                      +'<a id="edit-user" href="user-edit.php?id='+item.Id+'" class="btn btn-primary" style="margin:2px;">Edit</a><br>'
+                      +'<a id="delete-user" href="#" onclick="delete_data('+item.Id+');" class="btn btn-danger" style="margin:2px;">Delete</a><br>'
                     +'</td>'
                 +'</tr>';        
         $('#table > tbody:last-child').append(row);

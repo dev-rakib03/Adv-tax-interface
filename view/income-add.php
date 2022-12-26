@@ -65,13 +65,14 @@ include('layout_header.php');
   <!-- on form submit js code here -->
     <!-- hidden input will be RoleId,TinNumber,CreatedAt,UpdatedAt -->
 <script>
+    var userid = loged_user; //user id from session
     // this is the id of the form
     $("#addincome").submit(function(e) {
       e.preventDefault(); // avoid to execute the actual submit of the form.
       const d = new Date();
       let time = d.getTime();
       var form = $(this);
-      var form_data = form.serialize()+"&UserId=40"+"&CreatedAt="+new Date().toJSON()+"&UpdatedAt="+new Date().toJSON();
+      var form_data = form.serialize()+"&UserId="+userid+"&CreatedAt="+new Date().toJSON()+"&UpdatedAt="+new Date().toJSON();
       var actionUrl = api_root+"/api/income/create";
         //console.log(form_data);
         $.ajax({

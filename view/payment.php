@@ -2,284 +2,43 @@
 $title = "Payment";
 include('layout_header.php');
 ?>
-  <link rel="stylesheet" href="../assets/bundles/datatables/datatables.min.css">
+<link rel="stylesheet" href="../assets/bundles/datatables/datatables.min.css">
   <link rel="stylesheet" href="../assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 
         <section class="section">
           <div class="section-body">
-            
+          <?php if(isset($_GET['from'])){ ?>
+            <div class="alert alert-success">
+              <div class="alert-title">Income <?php if($_GET['from']=='delete'){ ?> deleted<?php } ?>
+              <?php if($_GET['from']=='edit'){ ?> Updated <?php } ?>
+              <?php if($_GET['from']=='add'){ ?> Added <?php } ?>
+              Successfully</div>
+            </div>
+          <?php } ?>
             <div class="row">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <h4>All Income</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-striped" id="table-1">
+                      <table class="table table-striped" id="table">
                         <thead>
                           <tr>
                             <th class="text-center">
                               #
                             </th>
-                            <th>Task Name</th>
-                            <th>Progress</th>
-                            <th>Members</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
+                            <th>Income Id</th>
+                            <th>Payment Account</th>
+                            <th>TrxId</th>
+                            <th>Amount</th>
+                            <th>Payment Date</th>                            
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              1
-                            </td>
-                            <td>Create a mobile app</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-40">
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                            </td>
-                            <td>2018-01-20</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              2
-                            </td>
-                            <td>Redesign homepage</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar width-per-60"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-3.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                            </td>
-                            <td>2018-04-10</td>
-                            <td>
-                              <div class="badge badge-info badge-shadow">Todo</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              3
-                            </td>
-                            <td>Backup database</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning width-per-70"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                            </td>
-                            <td>2018-01-29</td>
-                            <td>
-                              <div class="badge badge-warning badge-shadow">In Progress</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              4
-                            </td>
-                            <td>Input data</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-90"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                            </td>
-                            <td>2018-01-16</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              5
-                            </td>
-                            <td>Create a mobile app</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-40">
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                            </td>
-                            <td>2018-01-20</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              6
-                            </td>
-                            <td>Redesign homepage</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar width-per-60"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-3.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                            </td>
-                            <td>2018-04-10</td>
-                            <td>
-                              <div class="badge badge-info badge-shadow">Todo</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              7
-                            </td>
-                            <td>Backup database</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning width-per-70"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                            </td>
-                            <td>2018-01-29</td>
-                            <td>
-                              <div class="badge badge-warning badge-shadow">In Progress</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              8
-                            </td>
-                            <td>Input data</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-90"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                            </td>
-                            <td>2018-01-16</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              9
-                            </td>
-                            <td>Create a mobile app</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-40">
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                            </td>
-                            <td>2018-01-20</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              10
-                            </td>
-                            <td>Redesign homepage</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar width-per-60"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-3.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                            </td>
-                            <td>2018-04-10</td>
-                            <td>
-                              <div class="badge badge-info badge-shadow">Todo</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              11
-                            </td>
-                            <td>Backup database</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning width-per-70"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                            </td>
-                            <td>2018-01-29</td>
-                            <td>
-                              <div class="badge badge-warning badge-shadow">In Progress</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              12
-                            </td>
-                            <td>Input data</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar bg-success width-per-90"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="../assets/img/users/user-2.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-5.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-4.png" width="35">
-                              <img alt="image" src="../assets/img/users/user-1.png" width="35">
-                            </td>
-                            <td>2018-01-16</td>
-                            <td>
-                              <div class="badge badge-success badge-shadow">Completed</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
+
                         </tbody>
                       </table>
                     </div>
@@ -292,13 +51,70 @@ include('layout_header.php');
         </section>
 
 
-<!-- JS Libraies -->
-<script src="../assets/bundles/datatables/datatables.min.js"></script>
-  <script src="../assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-  <script src="../assets/bundles/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Page Specific JS File -->
-  <script src="../assets/js/page/datatables.js"></script>
+    <!-- JS Libraies -->
+    <script src="../assets/bundles/datatables/datatables.min.js"></script>
+    <script src="../assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Page Specific JS File -->
+    <script src="../assets/js/page/datatables.js"></script>
 
+    <script>
+    $( document ).ready(function() {
+        $.ajax({
+            url: api_root+"/api/payment",
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function(res) {
+                res.forEach(create_table_row);
+                //console.log(res);
+            }
+        });
+    });
+    if(permission!=null){
+      !permission.includes('19')? $('#view-payment').hide():'';
+    }
+
+    function getJson(url) {
+        return JSON.parse($.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            global: false,
+            async: false,
+            success: function (data) {
+                return data;
+            }
+        }).responseText);
+    }
+    
+  
+    function create_table_row(item,index){
+        var income = getJson(api_root+"/api/income/"+item.IncomeId);
+        var row=
+                '<tr>'
+                    +'<td>'+(index+1)+'</td>'
+                    +'<td>'+item.IncomeId+'</td>'
+                    +'<td>'+item.PaymentAccount+'</td>'
+                    +'<td>'+item.TrxId+'</td>'
+                    +'<td>'+item.Amount+'</td>'                    
+                    +'<td>'+moment(item.PaymentDate).format('YYYY-MM-YY')+'</td>'                    
+                    +'<td class="text-center">'
+                      +'<a id="view-payment" href="payment-view.php?id='+item.Id+'" class="btn btn-success" style="margin:2px;">View</a><br>'
+                    +'</td>'
+                +'</tr>';
+
+        if(permission.includes('31')){
+          $('#table > tbody:last-child').append(row);
+        }
+        else if(income.UserId==loged_user){
+          $('#table > tbody:last-child').append(row);
+        }
+        else{
+
+        }
+        //console.log(item);
+    }
+</script>
 <?php
 include('layout_footer.php');
 ?>

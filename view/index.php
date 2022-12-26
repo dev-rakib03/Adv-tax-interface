@@ -20,7 +20,37 @@
 <?php
     include('nav.php');
 ?>
+<section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h4>Verify Tax Info</h4>
+              </div>
+              <div class="card-body">
+                <form method="POST" id="tax-info" class="needs-validation" novalidate="">
 
+                  <div class="row">
+                    <div class="form-group col-12">
+                      <label for="Name">TIN Number</label>
+                      <input id="Name" type="text" class="form-control needs-validation" required name="Name" autofocus>
+                    </div>
+                  </div>  
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      Find
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 
 
